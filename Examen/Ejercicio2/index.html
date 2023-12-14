@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Aplicación</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa; /* Color de fondo */
+      padding: 20px;
+    }
+
+    #app {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff; /* Color de fondo del contenedor */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #emisor button {
+      background-color: #007bff; /* Color del botón */
+      color: #fff; /* Color del texto del botón */
+      border: none;
+    }
+
+    #receptor {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="emisor" class="text-center">
+      <button class="btn btn-primary" onclick="emitirMensaje()">Enviar Mensaje</button>
+    </div>
+
+    <div id="receptor" class="text-center">
+      <p id="mensajeRecibido"></p>
+    </div>
+
+    <script>
+      function emitirMensaje() {
+        var evento = new CustomEvent('mensaje-enviado', { detail: '¡Hola desde emisor!' });
+        document.dispatchEvent(evento);
+      }
+
+      document.addEventListener('mensaje-enviado', function(event) {
+        document.getElementById('mensajeRecibido').innerText = event.detail;
+      });
+    </script>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
